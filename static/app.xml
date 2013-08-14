@@ -29,8 +29,7 @@
      http://localhost/app.js for faster single user development -->
 <script src="//hangout-unmuter.appspot.com/static/app.js"></script>
 
-<h1><img src="//hangout-unmuter.appspot.com/static/logo.png" 
-    alt="Thunderbolt Labs logo" height="50" width="50">Auto Unmuter</h1>
+<h1>Hangout Autounmuter</h1>
 <div style="float: left; padding: 0px 20px; border-right: 1px solid #EEE">
   <p>Automatically unmutes you if programatically muted</p>
   <input type='checkbox' id='force-unmute'> Check to force unmute
