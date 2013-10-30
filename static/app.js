@@ -51,6 +51,37 @@ function updateStateUi(state) {
   }
 }
 
+function getRandomInt (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function loadAvatars(participants) {
+  console.log("Loading avatarts. They're tasty");
+  console.log(participants);
+  for(var i = 0; i < participants.length; i++) {
+    var p = participants[i];
+    addAvatar(p.person.image.url, p.person.displayName);
+  }
+}
+
+function addAvatar(url, name) {
+  console.log("Adding avatar for " + name + " with url + " + url);
+  var avatarsBlock = document.getElementById('avatars');
+  console.log(avatarsBlock);
+  var li = document.createElement('li');
+  var html = "<img alt='" + name + "' class='" + getRandomColor() + "' height='64' src='" + url + "' width='64' /><div class='name'>" + name + "</div>";
+  li.setAttribute('class', 'avatar');
+  li.innerHTML = html;
+  avatarsBlock.appendChild(li);
+}
+
+$(function() {
+  $('.avatar').on('click', function(e) {
+    console.log('avatar clicked');
+    return $(this).toggleClass('off');
+  });
+});
+
 // A function to be run at app initialization time which registers our callbacks
 function init() {
   console.log('Init app.');
@@ -58,6 +89,10 @@ function init() {
   var apiReady = function(eventObj) {
     if (eventObj.isApiReady) {
       console.log('API is ready');
+
+
+      var participants = gapi.hangout.getParticipants();
+      loadAvatars(participants);
 
       gapi.hangout.av.onMicrophoneMute.add(function(eventObj) {
         var statusBlock = document.getElementById('status-block')
